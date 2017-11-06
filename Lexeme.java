@@ -1,4 +1,4 @@
-package prop.assignment0;
+package inlupp1;
 
 public class Lexeme {
 	private Object value;

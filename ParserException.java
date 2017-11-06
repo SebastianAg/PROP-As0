@@ -1,4 +1,4 @@
-package prop.assignment0;
+package inlupp1;
 
 public class ParserException extends Exception {
 	public ParserException(String message) {

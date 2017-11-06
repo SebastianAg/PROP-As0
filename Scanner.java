@@ -1,4 +1,4 @@
-package prop.assignment0;
+package inlupp1;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
