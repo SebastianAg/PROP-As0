@@ -31,12 +31,6 @@ public class Parser implements IParser{
 
 		//Works as intended
 		lexemes = readLexemes();
-
-		System.out.println("Printing lexemes");
-		for (Lexeme lexeme : lexemes)
-			System.out.print(lexeme);
-		System.out.println();
-
 		parseLexemes();
 
 		return rootNode;

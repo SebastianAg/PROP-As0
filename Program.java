@@ -13,6 +13,7 @@ public class Program {
 		StringBuilder builder = null;
 		FileOutputStream stream = null;
 		OutputStreamWriter writer = null;
+		Evaluator evaluator = null;
 
 		try {
 			try {
@@ -30,6 +31,7 @@ public class Program {
 
 				root.buildString(builder, 0);
 				builder.append("\nEVALUATION:\n");
+				evaluator = new Evaluator();
 				builder.append(root.evaluate(null));
 
 				stream = new FileOutputStream(outputFileName);
