@@ -35,7 +35,6 @@ public class Tokenizer implements ITokenizer{
 		scanner.open(fileName);
 		scanner.moveNext();
 		next = extractLexeme();
-		
 	}
 	
 	 private void consumeWhiteSpaces() throws IOException {
