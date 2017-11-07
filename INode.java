@@ -1,14 +1,13 @@
 package inlupp1;
 
+import java.util.ArrayList;
+
 public interface INode {
 	/**
 	 * The argument array 'args' is only needed for the requirements for grade A and B.
 	 * When not needed just call evaluate with null as the actual parameter.
 	 */
-	Object evaluate(Object[] args) throws Exception; 
+	Object evaluate(Object[] args); //throws exception <- original, removed to not catch all types of error while in dev
 	
 	void buildString(StringBuilder builder, int tabs);
-
-	void setParent(INode parent);
-	INode getParent();
 }

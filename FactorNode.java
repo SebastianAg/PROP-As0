@@ -1,26 +1,24 @@
 package inlupp1;
 
+import java.util.ArrayList;
+
 public class FactorNode implements INode {
 
-    private INode parentNode;
+    //Must exist
+    public Lexeme integer;
+
+    //Or must exist
+    public Lexeme leftParantesis;
+    public ExpressionNode expression;
+    public Lexeme rightParantesis;
 
     @Override
-    public Object evaluate(Object[] args) throws Exception {
+    public Object evaluate(Object[] args) /*throws Exception*/ {
         return null;
     }
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
-
-    }
-
-    @Override
-    public void setParent(INode newParent) {
-        parentNode = newParent;
-    }
-
-    @Override
-    public INode getParent() {
-        return parentNode;
+        builder.append(StringUtil.prependTabs(integer.toString() + "\n", tabs + 1));
     }
 }

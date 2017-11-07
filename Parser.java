@@ -7,6 +7,9 @@ public class Parser implements IParser{
 
 	private Tokenizer tokenizer = null;
 	private ArrayList<Lexeme> lexemes = null;
+	private INode rootNode;
+
+	private int activeLexemeIndex = 0;
 
 	public Parser()
 	{
@@ -21,12 +24,22 @@ public class Parser implements IParser{
 
 	@Override
 	public INode parse() throws IOException, TokenizerException, ParserException {
+		System.out.println("Parsing");
+
 		if (tokenizer == null)
 			throw new ParserException("Uninitialized tokenizer");
 
-		readLexemes();
+		//Works as intended
+		lexemes = readLexemes();
 
-		return null;
+		System.out.println("Printing lexemes");
+		for (Lexeme lexeme : lexemes)
+			System.out.print(lexeme);
+		System.out.println();
+
+		parseLexemes();
+
+		return rootNode;
 	}
 
 	@Override
@@ -35,11 +48,70 @@ public class Parser implements IParser{
 		
 	}
 
-	private void readLexemes() throws IOException, TokenizerException {
-		/*while (tokenizer.current() != null)
+	private void parseLexemes()
+	{
+		activeLexemeIndex = 0;
+
+		for (int i = 0; i < lexemes.size(); i++)
 		{
-			lexemes.add(tokenizer.current());
+			if (lexemes.get(i).token() == Token.ASSIGN_OP)
+			{
+				activeLexemeIndex = i;
+				AssignmentNode node = assignmentRule();
+				rootNode = node;
+			}
+		}
+	}
+
+	private AssignmentNode assignmentRule()
+	{
+		AssignmentNode node = new AssignmentNode();
+		node.id = lexemes.get(activeLexemeIndex - 1); //Left of =, check so it's actually a identifier
+		node.assignment = lexemes.get(activeLexemeIndex);
+		activeLexemeIndex++;
+		node.expression = expressionRule();
+		node.semicolon = lexemes.get(lexemes.size() - 1); //Fix later
+
+		return node;
+	}
+
+	private ExpressionNode expressionRule()
+	{
+		ExpressionNode node = new ExpressionNode();
+
+		node.term = termRule();
+
+		return node;
+	}
+
+	private TermNode termRule()
+	{
+		TermNode node = new TermNode();
+
+		node.factor = factorRule();
+
+		return node;
+	}
+
+	private FactorNode factorRule()
+	{
+		FactorNode node = new FactorNode();
+
+		node.integer = lexemes.get(activeLexemeIndex);
+		activeLexemeIndex++;
+
+		return node;
+	}
+
+	private ArrayList<Lexeme> readLexemes() throws IOException, TokenizerException {
+		ArrayList<Lexeme> readLexemes = new ArrayList<Lexeme>();
+
+		tokenizer.moveNext();
+		while (tokenizer.current() != null && tokenizer.current().token() != Token.EOF) {
+			readLexemes.add(tokenizer.current());
 			tokenizer.moveNext();
-		}*/
+		}
+
+		return readLexemes;
 	}
 }

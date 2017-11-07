@@ -87,6 +87,7 @@ public class Tokenizer implements ITokenizer{
 	public void moveNext() throws IOException, TokenizerException {
 		if (scanner == null)
 		    throw new IOException("No open file.");
+
 		current = next;
 		if (next.token() != Token.EOF)
 		    next = extractLexeme();

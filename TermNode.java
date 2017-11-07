@@ -1,27 +1,24 @@
 package inlupp1;
 
+import java.util.ArrayList;
+
 public class TermNode implements INode {
 
-    private INode parentNode;
+    //Must exist
+    public FactorNode factor;
+
+    //Can exist
+    public Lexeme operator;
+    public TermNode term;
 
     @Override
-    public Object evaluate(Object[] args) throws Exception {
+    public Object evaluate(Object[] args) /*throws Exception*/ {
         return null;
     }
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
-
-    }
-
-    @Override
-    public void setParent(INode newParent) {
-        parentNode = newParent;
-    }
-
-    @Override
-    public INode getParent() {
-        return parentNode;
+        factor.buildString(builder, tabs + 1);
     }
 }
 

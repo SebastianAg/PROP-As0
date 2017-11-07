@@ -13,4 +13,24 @@ public class StringUtil {
         }
         return true;
     }
+
+    public static String appendTabs(String str, int tabs)
+    {
+        for (int i = 0; i < tabs; i++)
+            str += "\t";
+
+        return str;
+    }
+
+    public static String prependTabs(String str, int tabs)
+    {
+        String newString = "";
+
+        for (int i = 0; i < tabs; i++)
+            newString += "\t";
+
+        newString += str;
+
+        return newString;
+    }
 }
