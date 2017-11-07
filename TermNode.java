@@ -20,6 +20,12 @@ public class TermNode implements INode {
     public void buildString(StringBuilder builder, int tabs) {
         builder.append(StringUtil.prependTabs("TermNode\n", tabs));
         factor.buildString(builder, tabs + 1);
+
+        if (operator != null && term != null)
+        {
+            builder.append(StringUtil.prependTabs(operator.toString() + "\n", tabs + 1));
+            term.buildString(builder, tabs + 1);
+        }
     }
 }
 
