@@ -10,7 +10,6 @@ import java.util.HashSet;
 public class Tokenizer implements ITokenizer{
 	
 	private static Map<Character, Token> symbols = null;
-	
 	private Scanner scanner = null;
 	private Lexeme current = null;
 	private Lexeme next = null;
@@ -28,9 +27,8 @@ public class Tokenizer implements ITokenizer{
 		symbols.put(';', Token.SEMICOLON);
 		//symbols.put('{', Token.LEFT_CURLY);
 		//symbols.put('}', Token.RIGHT_CURLY);
-		
-		
 	}
+
 	@Override
 	public void open(String fileName) throws IOException, TokenizerException {
 		scanner = new Scanner();
@@ -59,15 +57,16 @@ public class Tokenizer implements ITokenizer{
 			    	strBuilder.append(scanner.current());
 			    	scanner.moveNext();
 			    }
+
 			    String lexeme = strBuilder.toString(); 
 			    return new Lexeme (lexeme, Token.IDENT);
-			    //System.out.println(lexeme);
 			}
-			else if (isNumeric(ch.toString())) {
-				while (isNumeric(Character.toString(scanner.current()))) {
+			else if (StringUtil.isNumeric(ch.toString())) {
+				while (StringUtil.isNumeric(Character.toString(scanner.current()))) {
 			    	strBuilder.append(scanner.current());
 			    	scanner.moveNext();
 			    }
+
 				String lexeme = strBuilder.toString(); 
 				return new Lexeme (lexeme, Token.INT_LIT);
 			}
@@ -92,29 +91,10 @@ public class Tokenizer implements ITokenizer{
 		current = next;
 		if (next.token() != Token.EOF)
 		    next = extractLexeme();
-	    
-		
-		
-		
 	}
 
 	@Override
 	public void close() throws IOException {
 		scanner.close();
-		
 	}
-	
-	private boolean isNumeric(String str)  
-	{  
-	  try  
-	  {  
-	    double d = Double.parseDouble(str);  
-	  }  
-	  catch(NumberFormatException nfe)  
-	  {  
-	    return false;  
-	  }  
-	  return true;  
-	}
-
 }
