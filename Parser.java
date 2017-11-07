@@ -79,7 +79,26 @@ public class Parser implements IParser{
 	{
 		ExpressionNode node = new ExpressionNode();
 
-		node.term = termRule();
+		TermNode termNode = termRule();
+		if (termNode != null)
+			node.term = termNode;
+
+		Token currentToken = lexemes.get(activeLexemeIndex).token();
+		if (currentToken == Token.ADD_OP || currentToken == Token.SUB_OP)
+		{
+			int lexemeIndexForOP = activeLexemeIndex;
+
+			ExpressionNode expressionNode = expressionRule();
+
+			if (expressionNode != null)
+			{
+				node.operator = lexemes.get(lexemeIndexForOP);
+				node.expression = expressionNode;
+			}
+		}
+
+		if (node.term == null)
+			return null;
 
 		return node;
 	}
@@ -88,19 +107,47 @@ public class Parser implements IParser{
 	{
 		TermNode node = new TermNode();
 
-		node.factor = factorRule();
+		FactorNode factorNode = factorRule();
+		if (factorNode != null)
+			node.factor = factorNode;
 
-		return node;
+		Token currentToken = lexemes.get(activeLexemeIndex).token();
+		if ( currentToken == Token.MULT_OP || currentToken == Token.DIV_OP)
+		{
+			int lexemeIndexForOp = activeLexemeIndex;
+
+			TermNode termNode = termRule();
+
+			if (termNode != null)
+			{
+				node.operator = lexemes.get(lexemeIndexForOp);
+				node.term = termNode;
+			}
+		}
+
+		if (node.factor != null)
+			return node;
+
+		return null;
 	}
 
 	private FactorNode factorRule()
 	{
 		FactorNode node = new FactorNode();
 
-		node.integer = lexemes.get(activeLexemeIndex);
-		activeLexemeIndex++;
+		if (lexemes.get(activeLexemeIndex).token() == Token.INT_LIT)
+		{
+			node.integer = lexemes.get(activeLexemeIndex);
+			activeLexemeIndex++;
+			return node;
+		} else if (lexemes.get(activeLexemeIndex).token() == Token.LEFT_PAREN) {
+			node.leftParantesis = lexemes.get(activeLexemeIndex);
+			node.expression = expressionRule();
+			node.rightParantesis = lexemes.get(activeLexemeIndex);
+			return node;
+		}
 
-		return node;
+		return null;
 	}
 
 	private ArrayList<Lexeme> readLexemes() throws IOException, TokenizerException {
