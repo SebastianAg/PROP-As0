@@ -19,6 +19,7 @@ public class FactorNode implements INode {
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
+        builder.append(StringUtil.prependTabs("FactorNode\n", tabs));
         if (integer != null)
         {
             builder.append(StringUtil.prependTabs(integer.toString() + "\n", tabs + 1));

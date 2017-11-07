@@ -18,6 +18,7 @@ public class ExpressionNode implements INode {
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
+        builder.append(StringUtil.prependTabs("ExpressionNode\n", tabs));
         term.buildString(builder, tabs + 1);
 
         if (operator != null && expression != null)

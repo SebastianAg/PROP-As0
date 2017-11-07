@@ -18,6 +18,7 @@ public class TermNode implements INode {
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
+        builder.append(StringUtil.prependTabs("TermNode\n", tabs));
         factor.buildString(builder, tabs + 1);
     }
 }
