@@ -24,8 +24,6 @@ public class Parser implements IParser{
 
 	@Override
 	public INode parse() throws IOException, TokenizerException, ParserException {
-		System.out.println("Parsing");
-
 		if (tokenizer == null)
 			throw new ParserException("Uninitialized tokenizer");
 
