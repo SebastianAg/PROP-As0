@@ -8,6 +8,9 @@ public class FactorNode implements INode {
     public Lexeme integer;
 
     //Or must exist
+    public Lexeme id;
+
+    //Or must exist
     public Lexeme leftParantesis;
     public ExpressionNode expression;
     public Lexeme rightParantesis;
@@ -23,8 +26,9 @@ public class FactorNode implements INode {
         if (integer != null)
         {
             builder.append(StringUtil.prependTabs(integer.toString() + "\n", tabs + 1));
-        }
-        else if (leftParantesis != null && expression != null && rightParantesis != null)
+        } else if (id != null) {
+            builder.append(StringUtil.prependTabs(id.toString() + "\n", tabs + 1));
+        } else if (leftParantesis != null && expression != null && rightParantesis != null)
         {
             builder.append(StringUtil.prependTabs(leftParantesis.toString() + "\n", tabs + 1));
             expression.buildString(builder, tabs + 1);

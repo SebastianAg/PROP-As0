@@ -15,7 +15,7 @@ public class AssignmentNode implements INode {
 
     @Override
     public void buildString(StringBuilder builder, int tabs) {
-        builder.append("AssignmentNode\n");
+        builder.append(StringUtil.prependTabs("AssignmentNode\n", tabs));
         builder.append(StringUtil.prependTabs(id.toString() + "\n", tabs + 1));
         builder.append(StringUtil.prependTabs(assignment.toString() + "\n", tabs + 1));
         expression.buildString(builder, tabs + 1);

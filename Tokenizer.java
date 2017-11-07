@@ -25,8 +25,8 @@ public class Tokenizer implements ITokenizer{
 		symbols.put('(', Token.LEFT_PAREN);
 		symbols.put(')', Token.RIGHT_PAREN);
 		symbols.put(';', Token.SEMICOLON);
-		//symbols.put('{', Token.LEFT_CURLY);
-		//symbols.put('}', Token.RIGHT_CURLY);
+		symbols.put('{', Token.LEFT_CURLY);
+		symbols.put('}', Token.RIGHT_CURLY);
 	}
 
 	@Override

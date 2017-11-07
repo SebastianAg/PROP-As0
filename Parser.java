@@ -9,7 +9,12 @@ public class Parser implements IParser{
 	private ArrayList<Lexeme> lexemes = null;
 	private INode rootNode;
 
-	private int activeLexemeIndex = 0;
+	private int activeLexemeIndex = -1;
+
+	private int startBlockIndex = -1;
+	private int endBlockIndex = - 1;
+
+	private int lastAssignOpIndex = -1;
 
 	public Parser()
 	{
@@ -40,17 +45,54 @@ public class Parser implements IParser{
 
 	private void parseLexemes()
 	{
-		activeLexemeIndex = 0;
-
 		for (int i = 0; i < lexemes.size(); i++)
 		{
-			if (lexemes.get(i).token() == Token.ASSIGN_OP)
+			if (lexemes.get(i).token() == Token.LEFT_CURLY)
 			{
+				startBlockIndex = i;
 				activeLexemeIndex = i;
-				AssignmentNode node = assignmentRule();
+			}
+
+			if (activeLexemeIndex != -1 && lexemes.get(i).token() == Token.RIGHT_CURLY)
+			{
+				endBlockIndex = i;
+				BlockNode node = blockRule();
 				rootNode = node;
 			}
 		}
+	}
+
+	private BlockNode blockRule()
+	{
+		BlockNode node = new BlockNode();
+
+		node.leftCurly = lexemes.get(startBlockIndex);
+		node.statements = statementsRule();
+		node.rightCurly = lexemes.get(endBlockIndex);
+
+		return node;
+	}
+
+	private StatementsNode statementsRule()
+	{
+		StatementsNode node = new StatementsNode();
+
+		AssignmentNode assignment = assignmentRule();
+
+		//node.assignment = assignment;
+		StatementsNode statements = null;
+		if (assignment != null)
+			statements = statementsRule();
+
+		if (assignment != null && statements != null)
+		{
+			node.assignment = assignment;
+			node.statements = statements;
+		}
+		else
+			return node;
+
+		return node;
 	}
 
 	//In every case that we return null, there is no occurring assignmentRule.
@@ -58,20 +100,42 @@ public class Parser implements IParser{
 	{
 		AssignmentNode node = new AssignmentNode();
 
+		int assignOPIndex = -1;
+		int startIndex = lastAssignOpIndex != -1 ? lastAssignOpIndex + 1 : startBlockIndex;
+		for (int i = startIndex; i < endBlockIndex; i++)
+		{
+			if (assignOPIndex == -1 && lexemes.get(i).token() == Token.ASSIGN_OP)
+			{
+				assignOPIndex = i;
+				activeLexemeIndex = assignOPIndex;
+			}
+		}
+
+		//If we have not found a ASSIGN_OP.
+		if (assignOPIndex == -1)
+			return null;
+		else
+			lastAssignOpIndex = assignOPIndex;
+
 		//Left of =, check so it's actually a identifier
-		if (lexemes.get(activeLexemeIndex - 1).token() == Token.IDENT)
-			node.id = lexemes.get(activeLexemeIndex - 1);
+		if (lexemes.get(assignOPIndex - 1).token() == Token.IDENT)
+			node.id = lexemes.get(assignOPIndex - 1);
 		else
 			return null;
 
 		//We have already checked that the index represents a Token.ASSIGN_OP lexeme
-		node.assignment = lexemes.get(activeLexemeIndex);
+		node.assignment = lexemes.get(assignOPIndex);
 		activeLexemeIndex++;
 		node.expression = expressionRule();
 
 		//Check so it's actually lexeme of class SEMICOLON
-		if (lexemes.get(lexemes.size() - 1).token() == Token.SEMICOLON )
-			node.semicolon = lexemes.get(lexemes.size() - 1);
+		int semiColonIndex = -1;
+		for (int i = startIndex; i < endBlockIndex; i++)
+			if (semiColonIndex == -1 && lexemes.get(i).token() == Token.SEMICOLON)
+				semiColonIndex = i;
+
+		if (lexemes.get(semiColonIndex).token() == Token.SEMICOLON )
+			node.semicolon = lexemes.get(semiColonIndex);
 		else
 			return null;
 
@@ -140,9 +204,12 @@ public class Parser implements IParser{
 	{
 		FactorNode node = new FactorNode();
 
-		if (lexemes.get(activeLexemeIndex).token() == Token.INT_LIT)
-		{
+		if (lexemes.get(activeLexemeIndex).token() == Token.INT_LIT) {
 			node.integer = lexemes.get(activeLexemeIndex);
+			activeLexemeIndex++;
+			return node;
+		} else if (lexemes.get(activeLexemeIndex).token() == Token.IDENT) {
+			node.id = lexemes.get(activeLexemeIndex);
 			activeLexemeIndex++;
 			return node;
 		} else if (lexemes.get(activeLexemeIndex).token() == Token.LEFT_PAREN) {
