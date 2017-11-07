@@ -63,14 +63,27 @@ public class Parser implements IParser{
 		}
 	}
 
+	//In every case that we return null, there is no occurring assignmentRule.
 	private AssignmentNode assignmentRule()
 	{
 		AssignmentNode node = new AssignmentNode();
-		node.id = lexemes.get(activeLexemeIndex - 1); //Left of =, check so it's actually a identifier
+
+		//Left of =, check so it's actually a identifier
+		if (lexemes.get(activeLexemeIndex - 1).token() == Token.IDENT)
+			node.id = lexemes.get(activeLexemeIndex - 1);
+		else
+			return null;
+
+		//We have already checked that the index represents a Token.ASSIGN_OP lexeme
 		node.assignment = lexemes.get(activeLexemeIndex);
 		activeLexemeIndex++;
 		node.expression = expressionRule();
-		node.semicolon = lexemes.get(lexemes.size() - 1); //Fix later
+
+		//Check so it's actually lexeme of class SEMICOLON
+		if (lexemes.get(lexemes.size() - 1).token() == Token.SEMICOLON )
+			node.semicolon = lexemes.get(lexemes.size() - 1);
+		else
+			return null;
 
 		return node;
 	}
