@@ -29,7 +29,6 @@ public class Parser implements IParser{
 		if (tokenizer == null)
 			throw new ParserException("Uninitialized tokenizer");
 
-		//Works as intended
 		lexemes = readLexemes();
 		parseLexemes();
 
@@ -38,8 +37,7 @@ public class Parser implements IParser{
 
 	@Override
 	public void close() throws IOException {
-		// TODO Auto-generated method stub
-		
+		tokenizer.close();
 	}
 
 	private void parseLexemes()
