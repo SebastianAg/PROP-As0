@@ -87,6 +87,7 @@ public class Parser implements IParser{
 		if (currentToken == Token.ADD_OP || currentToken == Token.SUB_OP)
 		{
 			int lexemeIndexForOP = activeLexemeIndex;
+			activeLexemeIndex++;
 
 			ExpressionNode expressionNode = expressionRule();
 
@@ -112,9 +113,10 @@ public class Parser implements IParser{
 			node.factor = factorNode;
 
 		Token currentToken = lexemes.get(activeLexemeIndex).token();
-		if ( currentToken == Token.MULT_OP || currentToken == Token.DIV_OP)
+		if (currentToken == Token.MULT_OP || currentToken == Token.DIV_OP)
 		{
 			int lexemeIndexForOp = activeLexemeIndex;
+			activeLexemeIndex++;
 
 			TermNode termNode = termRule();
 
@@ -142,8 +144,10 @@ public class Parser implements IParser{
 			return node;
 		} else if (lexemes.get(activeLexemeIndex).token() == Token.LEFT_PAREN) {
 			node.leftParantesis = lexemes.get(activeLexemeIndex);
+			activeLexemeIndex++;
 			node.expression = expressionRule();
 			node.rightParantesis = lexemes.get(activeLexemeIndex);
+			activeLexemeIndex++;
 			return node;
 		}
 
