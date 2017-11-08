@@ -13,6 +13,27 @@ public class ExpressionNode implements INode {
 
     @Override
     public Object evaluate(Object[] args) /*throws Exception*/ {
+
+        if (term != null && operator == null && expression == null)
+            return term.evaluate(args);
+
+        if (term != null && operator != null && expression != null)
+        {
+            switch (operator.token())
+            {
+                case ADD_OP:
+                    return (double)term.evaluate(args) + (double)expression.evaluate(args);
+                case SUB_OP:
+                    return (double)term.evaluate(args) - (double)expression.evaluate(args);
+                case DIV_OP:
+                    return (double)term.evaluate(args) / (double)expression.evaluate(args);
+                case MULT_OP:
+                    return (double)term.evaluate(args) * (double)expression.evaluate(args);
+                default:
+                    break;
+            }
+        }
+
         return null;
     }
 

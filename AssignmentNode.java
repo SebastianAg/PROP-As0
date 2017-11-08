@@ -10,6 +10,7 @@ public class AssignmentNode implements INode {
 
     @Override
     public Object evaluate(Object[] args) /*throws Exception*/ {
+        Evaluator.addValue((String)id.value(), (double)expression.evaluate(args));
         return null;
     }
 

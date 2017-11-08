@@ -3,6 +3,7 @@ package inlupp1;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.HashMap;
 
 public class Program {
 	public static void main(String[] args) {
@@ -13,7 +14,6 @@ public class Program {
 		StringBuilder builder = null;
 		FileOutputStream stream = null;
 		OutputStreamWriter writer = null;
-		Evaluator evaluator = null;
 
 		try {
 			try {
@@ -31,8 +31,10 @@ public class Program {
 
 				root.buildString(builder, 0);
 				builder.append("\nEVALUATION:\n");
-				evaluator = new Evaluator();
-				builder.append(root.evaluate(null));
+				//builder.append(root.evaluate(null));
+
+				root.evaluate(null);
+				Evaluator.buildString(builder);
 
 				stream = new FileOutputStream(outputFileName);
 				writer = new OutputStreamWriter(stream);

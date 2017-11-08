@@ -13,6 +13,26 @@ public class TermNode implements INode {
 
     @Override
     public Object evaluate(Object[] args) /*throws Exception*/ {
+        if (factor != null && operator == null && term == null)
+            return factor.evaluate(args);
+
+        if (factor != null && operator != null && term != null)
+        {
+            switch (operator.token())
+            {
+                case ADD_OP:
+                    return (double)factor.evaluate(args) + (double)term.evaluate(args);
+                case SUB_OP:
+                    return (double)factor.evaluate(args) - (double)term.evaluate(args);
+                case DIV_OP:
+                    return (double)factor.evaluate(args) / (double)term.evaluate(args);
+                case MULT_OP:
+                    return (double)factor.evaluate(args) * (double)term.evaluate(args);
+                default:
+                    break;
+            }
+        }
+
         return null;
     }
 

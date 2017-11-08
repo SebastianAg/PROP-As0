@@ -7,8 +7,9 @@ public class BlockNode implements INode {
     public Lexeme rightCurly;
 
     @Override
-    public Object evaluate(Object[] args) {
-        return null;
+    public Object evaluate(Object[] args)
+    {
+        return statements.evaluate(args);
     }
 
     @Override

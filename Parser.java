@@ -100,6 +100,7 @@ public class Parser implements IParser{
 	{
 		AssignmentNode node = new AssignmentNode();
 
+		//We need to keep track of the last ASSIGN_OP, to know where to search for the next one.
 		int assignOPIndex = -1;
 		int startIndex = lastAssignOpIndex != -1 ? lastAssignOpIndex + 1 : startBlockIndex;
 		for (int i = startIndex; i < endBlockIndex; i++)
