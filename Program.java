@@ -1,7 +1,5 @@
 package inlupp1;
 
-//Authors: Fredrik Sander & Sebastian Agfemalm
-
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 
