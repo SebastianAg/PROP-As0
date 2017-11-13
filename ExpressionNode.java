@@ -22,13 +22,13 @@ public class ExpressionNode implements INode {
             switch (operator.token())
             {
                 case ADD_OP:
-                    return (double)term.evaluate(args) + (double)expression.evaluate(args);
+                    return term.evaluate(args) + " + " + expression.evaluate(args);
                 case SUB_OP:
-                    return (double)term.evaluate(args) - (double)expression.evaluate(args);
+                    return term.evaluate(args) + " - " + expression.evaluate(args);
                 case DIV_OP:
-                    return (double)term.evaluate(args) / (double)expression.evaluate(args);
+                    return term.evaluate(args) + " / " + expression.evaluate(args);
                 case MULT_OP:
-                    return (double)term.evaluate(args) * (double)expression.evaluate(args);
+                    return term.evaluate(args) + " * " + expression.evaluate(args);
                 default:
                     break;
             }

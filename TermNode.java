@@ -21,13 +21,13 @@ public class TermNode implements INode {
             switch (operator.token())
             {
                 case ADD_OP:
-                    return (double)factor.evaluate(args) + (double)term.evaluate(args);
+                    return factor.evaluate(args) + " + " + term.evaluate(args);
                 case SUB_OP:
-                    return (double)factor.evaluate(args) - (double)term.evaluate(args);
+                    return factor.evaluate(args) + " - " + term.evaluate(args);
                 case DIV_OP:
-                    return (double)factor.evaluate(args) / (double)term.evaluate(args);
+                    return factor.evaluate(args) + " / " + term.evaluate(args);
                 case MULT_OP:
-                    return (double)factor.evaluate(args) * (double)term.evaluate(args);
+                    return factor.evaluate(args) + " * " + term.evaluate(args);
                 default:
                     break;
             }

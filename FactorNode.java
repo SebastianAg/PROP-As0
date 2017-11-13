@@ -20,17 +20,17 @@ public class FactorNode implements INode {
         if (integer != null)
         {
             //System.out.println(integer.value().toString());
-            return Double.parseDouble(integer.value().toString());
+            return integer.value().toString();
         }
 
         if (integer == null && id != null)
         {
             //System.out.println(Evaluator.getValue(id.value().toString()));
-            return Evaluator.getValue(id.value().toString());
+            return Double.toString(Evaluator.getValue(id.value().toString()));
         }
 
         if (integer == null && id == null)
-            return expression.evaluate(args);
+            return "(" + expression.evaluate(args) + ")";
 
         return null;
     }

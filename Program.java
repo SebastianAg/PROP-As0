@@ -15,7 +15,7 @@ public class Program {
 		FileOutputStream stream = null;
 		OutputStreamWriter writer = null;
 
-		/*
+
 		try {
 			try {
 				//if (args.length < 2)
@@ -32,10 +32,7 @@ public class Program {
 
 				root.buildString(builder, 0);
 				builder.append("\nEVALUATION:\n");
-				//builder.append(root.evaluate(null));
-
-				root.evaluate(null);
-				Evaluator.buildString(builder);
+				builder.append(root.evaluate(null));
 
 				stream = new FileOutputStream(outputFileName);
 				writer = new OutputStreamWriter(stream);
@@ -53,8 +50,8 @@ public class Program {
 		} catch (IOException exception)
 		{
 			System.out.println("EXCEPTION: " + exception);
-		}*/
-
+		}
+		/*
 		try {
 			try {
 				if (args.length < 2)
@@ -90,6 +87,6 @@ public class Program {
 		}
 		catch (Exception exception) {
 			System.out.println("EXCEPTION: " + exception);
-		}
+		}*/
 	}
 }

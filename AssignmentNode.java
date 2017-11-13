@@ -1,5 +1,9 @@
 package inlupp1;
 
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptEngine;
+import javax.script.ScriptException;
+
 public class AssignmentNode implements INode {
 
     //Must exist
@@ -10,7 +14,19 @@ public class AssignmentNode implements INode {
 
     @Override
     public Object evaluate(Object[] args) /*throws Exception*/ {
-        Evaluator.addValue((String)id.value(), (double)expression.evaluate(args));
+        String evaluation = (String)expression.evaluate(args);
+
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("JavaScript");
+
+        double value = 0;
+        try {
+           value = (double)engine.eval(evaluation);
+        } catch (ScriptException e) {
+            e.printStackTrace();
+        }
+
+        Evaluator.addValue((String)id.value(), value);
         return null;
     }
 
