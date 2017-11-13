@@ -7,7 +7,7 @@ public class StatementsNode implements INode {
     public StatementsNode statements;
 
     @Override
-    public Object evaluate(Object[] args)
+    public Object evaluate(Object[] args) throws Exception
     {
         if (assignment != null && statements != null)
         {

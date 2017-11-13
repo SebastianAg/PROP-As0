@@ -12,8 +12,8 @@ public class ExpressionNode implements INode {
     public ExpressionNode expression;
 
     @Override
-    public Object evaluate(Object[] args) /*throws Exception*/ {
-
+    public Object evaluate(Object[] args) throws Exception
+    {
         if (term != null && operator == null && expression == null)
             return term.evaluate(args);
 

@@ -13,7 +13,7 @@ public class AssignmentNode implements INode {
     public Lexeme semicolon;
 
     @Override
-    public Object evaluate(Object[] args) /*throws Exception*/ {
+    public Object evaluate(Object[] args) throws Exception {
         String evaluation = (String)expression.evaluate(args);
 
         ScriptEngineManager manager = new ScriptEngineManager();

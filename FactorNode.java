@@ -16,18 +16,12 @@ public class FactorNode implements INode {
     public Lexeme rightParantesis;
 
     @Override
-    public Object evaluate(Object[] args) /*throws Exception*/ {
+    public Object evaluate(Object[] args) throws Exception {
         if (integer != null)
-        {
-            //System.out.println(integer.value().toString());
             return integer.value().toString();
-        }
 
         if (integer == null && id != null)
-        {
-            //System.out.println(Evaluator.getValue(id.value().toString()));
             return Double.toString(Evaluator.getValue(id.value().toString()));
-        }
 
         if (integer == null && id == null)
             return "(" + expression.evaluate(args) + ")";

@@ -7,7 +7,7 @@ public class BlockNode implements INode {
     public Lexeme rightCurly;
 
     @Override
-    public Object evaluate(Object[] args)
+    public Object evaluate(Object[] args) throws Exception
     {
         statements.evaluate(args);
         return Evaluator.buildString();

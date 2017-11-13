@@ -12,7 +12,7 @@ public class TermNode implements INode {
     public TermNode term;
 
     @Override
-    public Object evaluate(Object[] args) /*throws Exception*/ {
+    public Object evaluate(Object[] args) throws Exception {
         if (factor != null && operator == null && term == null)
             return factor.evaluate(args);
 
