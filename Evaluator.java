@@ -1,5 +1,7 @@
 package inlupp1;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.HashMap;
 
 public class Evaluator {
@@ -25,8 +27,10 @@ public class Evaluator {
     {
         String evaluatorStr = "";
 
+        NumberFormat formatter = new DecimalFormat("#0.0");
+
         for (HashMap.Entry<String, Double> entry : valueMap.entrySet())
-            evaluatorStr += entry.getKey() + " = " + entry.getValue().toString() + "\n";
+            evaluatorStr += entry.getKey() + " = " + formatter.format(entry.getValue()).toString() + "\n";
 
         return evaluatorStr;
     }
