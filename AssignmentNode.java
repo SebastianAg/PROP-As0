@@ -23,7 +23,7 @@ public class AssignmentNode implements INode {
         try {
            value = (double)engine.eval(evaluation);
         } catch (ScriptException e) {
-            e.printStackTrace();
+            return null;
         }
 
         Evaluator.addValue((String)id.value(), value);
