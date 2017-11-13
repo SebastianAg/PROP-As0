@@ -9,7 +9,8 @@ public class BlockNode implements INode {
     @Override
     public Object evaluate(Object[] args)
     {
-        return statements.evaluate(args);
+        statements.evaluate(args);
+        return Evaluator.buildString();
     }
 
     @Override

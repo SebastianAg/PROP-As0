@@ -15,6 +15,7 @@ public class Program {
 		FileOutputStream stream = null;
 		OutputStreamWriter writer = null;
 
+		/*
 		try {
 			try {
 				//if (args.length < 2)
@@ -52,11 +53,8 @@ public class Program {
 		} catch (IOException exception)
 		{
 			System.out.println("EXCEPTION: " + exception);
-		}
+		}*/
 
-
-
-		/*
 		try {
 			try {
 				if (args.length < 2)
@@ -71,7 +69,7 @@ public class Program {
 				builder.append("PARSE TREE:\n");
 
 				root.buildString(builder, 0);
-				/*builder.append("\nEVALUATION:\n");
+				builder.append("\nEVALUATION:\n");
 				builder.append(root.evaluate(null));
 
 				stream = new FileOutputStream(outputFileName);
@@ -93,6 +91,5 @@ public class Program {
 		catch (Exception exception) {
 			System.out.println("EXCEPTION: " + exception);
 		}
-		*/
 	}
 }

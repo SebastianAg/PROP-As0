@@ -21,9 +21,13 @@ public class Evaluator {
         return valueMap.get(identifier);
     }
 
-    public static void buildString(StringBuilder builder)
+    public static String buildString()
     {
+        String evaluatorStr = "";
+
         for (HashMap.Entry<String, Double> entry : valueMap.entrySet())
-            builder.append(entry.getKey() + " = " + entry.getValue().toString() + "\n");
+            evaluatorStr += entry.getKey() + " = " + entry.getValue().toString() + "\n";
+
+        return evaluatorStr;
     }
 }

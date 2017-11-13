@@ -19,13 +19,13 @@ public class FactorNode implements INode {
     public Object evaluate(Object[] args) /*throws Exception*/ {
         if (integer != null)
         {
-            System.out.println(integer.value().toString());
+            //System.out.println(integer.value().toString());
             return Double.parseDouble(integer.value().toString());
         }
 
         if (integer == null && id != null)
         {
-            System.out.println(Evaluator.getValue(id.value().toString()));
+            //System.out.println(Evaluator.getValue(id.value().toString()));
             return Evaluator.getValue(id.value().toString());
         }
 
