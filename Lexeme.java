@@ -1,5 +1,7 @@
 package inlupp1;
 
+//Authors: Fredrik Sander & Sebastian Agfemalm
+
 public class Lexeme {
 	private Object value;
 	private Token token;

@@ -1,5 +1,7 @@
 package inlupp1;
 
+//Authors: Fredrik Sander & Sebastian Agfemalm
+
 public class BlockNode implements INode {
 
     public Lexeme leftCurly;

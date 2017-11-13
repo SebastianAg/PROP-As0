@@ -1,5 +1,7 @@
 package inlupp1;
 
+//Authors: Fredrik Sander & Sebastian Agfemalm
+
 import java.io.IOException;
 import java.util.ArrayList;
 

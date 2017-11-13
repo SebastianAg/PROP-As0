@@ -1,5 +1,7 @@
 package inlupp1;
 
+//Authors: Fredrik Sander & Sebastian Agfemalm
+
 public class TermNode implements INode {
 
     //Must exist

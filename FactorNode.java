@@ -1,6 +1,6 @@
 package inlupp1;
 
-import java.util.ArrayList;
+//Authors: Fredrik Sander & Sebastian Agfemalm
 
 public class FactorNode implements INode {
 

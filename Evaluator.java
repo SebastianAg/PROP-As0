@@ -1,5 +1,7 @@
 package inlupp1;
 
+//Authors: Fredrik Sander & Sebastian Agfemalm
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.HashMap;

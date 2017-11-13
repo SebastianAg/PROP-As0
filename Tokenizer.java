@@ -1,10 +1,10 @@
 package inlupp1;
 
-import java.io.FileNotFoundException;
+//Authors: Fredrik Sander & Sebastian Agfemalm
+
 import java.io.IOException;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.HashSet;
 
 
 public class Tokenizer implements ITokenizer{

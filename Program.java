@@ -1,9 +1,9 @@
 package inlupp1;
 
+//Authors: Fredrik Sander & Sebastian Agfemalm
+
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.util.HashMap;
 
 public class Program {
 	public static void main(String[] args) {
