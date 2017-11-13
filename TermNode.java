@@ -1,7 +1,5 @@
 package inlupp1;
 
-import java.util.ArrayList;
-
 public class TermNode implements INode {
 
     //Must exist
